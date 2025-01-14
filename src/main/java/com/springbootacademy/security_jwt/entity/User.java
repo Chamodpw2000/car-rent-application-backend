@@ -1,17 +1,32 @@
 package com.springbootacademy.security_jwt.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Set;
-
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class User {
     @Id
-    private String userName;
+    private String userEmail;
+
+    private String nic;
+
+    private String mobileNumber;
+
     private String userFirstName;
 
     private String userLastName;
 
     private String userPassword;
+
+    private String userAddress;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name="USER_ROLE",
@@ -24,57 +39,9 @@ public class User {
     private Set<Role> role;
 
 
-    public String getUserName() {
-        return userName;
-    }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
-    public String getUserFirstName() {
-        return userFirstName;
-    }
 
-    public void setUserFirstName(String userFirstName) {
-        this.userFirstName = userFirstName;
-    }
-
-    public String getUserLastName() {
-        return userLastName;
-    }
-
-    public void setUserLastName(String userLastName) {
-        this.userLastName = userLastName;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public Set<Role> getRole() {
-        return role;
-    }
-
-    public void setRole(Set<Role> role) {
-        this.role = role;
-    }
-
-    public User() {
-
-    }
-
-    public User(String userName, String userFirstName, String userLastName, String userPassword, Set<Role> role) {
-        this.userName = userName;
-        this.userFirstName = userFirstName;
-        this.userLastName = userLastName;
-        this.userPassword = userPassword;
-        this.role = role;
-    }
 
 
 

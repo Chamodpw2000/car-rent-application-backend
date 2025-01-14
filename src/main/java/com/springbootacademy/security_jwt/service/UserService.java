@@ -47,13 +47,16 @@ public class UserService {
         }
 
 
-        if(!userRepo.existsById("admin123")) {
+        if(!userRepo.existsById("admin@mail.com")) {
 
             User user = new User();
-            user.setUserName("admin123");
-            user.setUserPassword(getEncodedPassword("admin@123"));
-            user.setUserFirstName("Chamod");
-            user.setUserLastName("Wanigasekara");
+            user.setUserEmail("admin@mail.com");
+            user.setUserPassword(getEncodedPassword("admin"));
+            user.setUserFirstName("admin");
+            user.setUserLastName("admin");
+            user.setUserAddress("admin address");
+            user.setNic("admin nic");
+
 
             Set<Role> adminRoles = new HashSet<>();
             adminRoles.add(adminRole);
@@ -63,14 +66,15 @@ public class UserService {
         }
 
 
-        if(!userRepo.existsById("user123")) {
+        if(!userRepo.existsById("user@mail.com")) {
 
             User user = new User();
-            user.setUserName("user123");
-            user.setUserPassword(getEncodedPassword("user@123"));
-            user.setUserFirstName("Kasun");
-            user.setUserLastName("Bandara");
-
+            user.setUserEmail("user@mail.com");
+            user.setUserPassword(getEncodedPassword("user"));
+            user.setUserFirstName("user");
+            user.setUserLastName("user");
+            user.setNic("user nic");
+            user.setUserAddress("user address");
             Set<Role> userRoles = new HashSet<>();
             userRoles.add(userRole);
 

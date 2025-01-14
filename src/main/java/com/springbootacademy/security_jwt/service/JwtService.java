@@ -35,19 +35,19 @@ public class JwtService implements UserDetailsService {
     private JwtUtil jwtUtil;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepo.findById(username).get();
+    public UserDetails loadUserByUsername(String useremail) throws UsernameNotFoundException {
+        User user = userRepo.findById(useremail).get();
 
         if (user != null) {
             return new org.springframework.security.core.userdetails.User(
-                    user.getUserName(),
+                    user.getUserEmail(),
                     user.getUserPassword(),
                     getAuthority(user)
 
             );
 
         }else {
-            throw new UsernameNotFoundException("User not found with username " + username);
+            throw new UsernameNotFoundException("User not found with username " + useremail);
         }
 
 
@@ -67,19 +67,19 @@ public class JwtService implements UserDetailsService {
 
     public LoginResponse createJwtToken(LoginRequest loginRequest) throws Exception{
 
-            String userName = loginRequest.getUserName();
+            String userEmail = loginRequest.getUserEmail();
             String userPassword = loginRequest.getUserPassword();
 
-            authenticate(userName,userPassword);
+            authenticate(userEmail,userPassword);
 
 
 
-            UserDetails userDetails = loadUserByUsername(userName);
+            UserDetails userDetails = loadUserByUsername(userEmail);
 
 
 
             String newGeneratedToken = jwtUtil.generateToken(userDetails);
-            User user = userRepo.findById(userName).get();
+            User user = userRepo.findById(userEmail).get();
 
             LoginResponse loginResponse = new LoginResponse(
                     user,
@@ -93,11 +93,11 @@ public class JwtService implements UserDetailsService {
 
     }
 
-    private void authenticate(String userName, String userPassword) throws Exception{
+    private void authenticate(String userEmail, String userPassword) throws Exception{
 
         try{
 
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userName, userPassword));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userEmail, userPassword));
 
 
 
