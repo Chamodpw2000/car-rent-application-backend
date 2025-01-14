@@ -24,7 +24,20 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User registerNewUser(User user) { return userRepo.save(user);}
+    public User registerNewUser(User user) {
+
+        User saveUser = new User(
+                user.getUserEmail(),
+                user.getNic(),
+                user.getMobileNumber(),
+                user.getUserFirstName(),
+                user.getUserLastName(),
+                getEncodedPassword(user.getUserPassword()),
+                user.getUserAddress(),
+                user.getRole()
+        );
+
+        return userRepo.save(saveUser);}
 
 
     public void initRoleAndUser(){
