@@ -1,31 +1,18 @@
-package com.springbootacademy.security_jwt.entity;
+package com.springbootacademy.security_jwt.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Car {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Getter
+@Setter
+public class AddCarDto {
     private Integer Id;
-
-
-
-
-
-
-
 
 
     private String carName;
@@ -37,15 +24,9 @@ public class Car {
     private Integer seates;
     private String fualType;
     private Integer kmpl;
-
-    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CarImage> images = new ArrayList<>();
+    private List<CarImageDto> images;
     private long rent;
     private String type;
-
-
-
-
 
 
 }
