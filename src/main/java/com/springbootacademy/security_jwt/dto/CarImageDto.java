@@ -10,3 +10,6 @@ import lombok.*;
 public class CarImageDto {
     private String imageUrl;
 }
+
+
+

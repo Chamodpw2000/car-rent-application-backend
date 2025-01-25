@@ -5,9 +5,9 @@ import com.springbootacademy.security_jwt.entity.Car;
 import com.springbootacademy.security_jwt.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class CarController {
@@ -24,6 +24,22 @@ public class CarController {
         return string;
 }
 
+
+@GetMapping({"/getcars"})
+    public List<AddCarDto> getCars() {
+
+        List<AddCarDto> cars = carService.getCars();
+                return cars;
+}
+
+
+@GetMapping({"/getcar/{id}"})
+public AddCarDto getCar(@PathVariable int id) {
+
+   AddCarDto addCarDto = carService.getCar(id);
+
+   return addCarDto;
+};
 
 
 }

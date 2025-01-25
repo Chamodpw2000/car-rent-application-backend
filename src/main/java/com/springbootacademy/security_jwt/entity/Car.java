@@ -16,6 +16,7 @@ import java.util.List;
 @Entity
 public class Car {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
@@ -42,10 +43,8 @@ public class Car {
     private List<CarImage> images = new ArrayList<>();
     private long rent;
     private String type;
-
-
-
-
+    private boolean availability;
+    private long capacity;
 
 
 }

@@ -27,6 +27,8 @@ public class AddCarDto {
     private List<CarImageDto> images;
     private long rent;
     private String type;
+    private boolean availability;
+    private long capacity;
 
 
 }
