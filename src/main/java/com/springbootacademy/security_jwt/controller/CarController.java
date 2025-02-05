@@ -40,6 +40,11 @@ public AddCarDto getCar(@PathVariable int id) {
 
    return addCarDto;
 };
+@DeleteMapping({"/deleteimages/{id}"})
+@PreAuthorize("hasRole('Admin')")
+public String deleteImages(@PathVariable int id){
 
+    return carService.deleteImages(id);
+}
 
 }

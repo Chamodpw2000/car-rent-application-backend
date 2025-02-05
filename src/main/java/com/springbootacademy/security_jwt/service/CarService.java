@@ -9,6 +9,7 @@ import com.springbootacademy.security_jwt.repo.CarRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +33,9 @@ public class CarService {
 
 
             try {
-                // Create and save the car first
+
                 Car car = new Car();
+                car.setId(addCarDto.getId());
                 car.setCarName(addCarDto.getCarName());
                 car.setCarBrand(addCarDto.getCarBrand());
                 car.setCarModel(addCarDto.getCarModel());
@@ -155,5 +157,14 @@ public class CarService {
 
 
         }
+
+        @Transactional
+        public String deleteImages(int id){
+            Optional<Car> car = carRepo.findById(id);
+            String status = carImageRepo.deleteCarImagesByCar(car);
+            return status;
+
+
+        };
 
 }
